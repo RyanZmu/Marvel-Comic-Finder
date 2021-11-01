@@ -1,0 +1,115 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+}
+
+body {
+    background-color: hsl(0, 91%, 40%);
+}
+
+.heroContainer {
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    margin-top: 3rem;   
+}
+
+.heroImage {
+    max-height:20rem;
+    max-width: 10rem;
+    margin:1rem 0;
+}
+
+.heroCard {
+    display: flex;
+    flex-flow: column wrap;
+    align-items: center;
+    flex-basis: 3;
+    width: 18%;
+    height: 10%;
+    padding:2%;
+    border: solid 1px black;
+    margin: 2rem 0 5rem 0;
+    background-color:hsl(0, 90%, 30%);
+}
+
+.heroCard:hover {
+ animation-name: float;
+}
+
+.banner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 80%;
+    min-height: 20rem;
+    background-color: black;  
+}
+
+#superSearch {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 3rem;
+}
+
+.comicImage {
+   min-height:10rem;
+   min-width:10rem;
+}
+
+.eventImage {
+    min-height:10rem;
+    min-width:10rem;
+}
+
+.seriesImage {
+    min-height:10rem;
+    min-width:10rem;
+}
+
+.comicContainer {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-evenly;
+    padding: 10px;
+}
+
+hr {
+    margin:1rem 0;
+}
+
+details {
+    background-color:hsl(0, 90%, 38%);
+    color:white;
+    margin-bottom: 1rem;
+}
+
+button {
+    background-color: black;
+    color: white;
+}
+
+button:hover {
+    color: red;
+}
+
+footer {
+    text-align: center;
+    
+}
+
+a {
+    text-decoration: none;
+    color: black;;
+}
+
+/* @keyframes float {
+    from {
+        height:10%;
+      }
+    
+      to {
+        height:25%;
+      }
+} */

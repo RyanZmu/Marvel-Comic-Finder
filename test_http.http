@@ -1,0 +1,5 @@
+GET https://gateway.marvel.com/v1/public/characters/1009504/comics?apikey=cecb0667f3786d500e442a8d4990b71e&hash=8152e0c81bfdf8b93856bf07eca79912&ts=1
+
+###
+
+GET https://jservice.kenzie.academy/api/clues/1232
