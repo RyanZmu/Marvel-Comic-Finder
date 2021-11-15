@@ -48,6 +48,7 @@ const comicDisplay = document.querySelector('.comicContainer')
 const eventDisplay = document.querySelector('.eventContainer')
 const seriesDisplay = document.querySelector('.seriesContainer')
 //
+userHeroInput.value = '' //default state for search form
 
 class SuperHero {
     constructor(name) {
@@ -61,38 +62,40 @@ class SuperHero {
     }
 
     buildHero (heroSearched) {
-        this.name = heroSearched.data.results.map(hero => hero.name)[0]
-        this.id = heroSearched.data.results.map(hero => hero.id)[0]
+        console.log(heroSearched)
+
+        this.name = heroSearched.data.results.map(hero => hero.name)// array of names
+        this.id = heroSearched.data.results.map(hero => hero.id)[0]// use the first id for now.
 
         this.description = heroSearched.data.results.map(hero => hero.description).join(' ')
        
-        this.thumbnail = heroSearched.data.results.filter(hero => hero.thumbnail.path !== '' )[0].thumbnail.path //fix this logic later
+        this.thumbnail = heroSearched.data.results.map(hero => hero.thumbnail.path)
+        //array of thumbnails the user can click through, add a next and previous button later on.
         
-        this.comics = heroSearched.data.results.filter(hero => hero.comics ) //array of comic objects
-        this.events =  heroSearched.data.results.filter(hero => hero.events )
-        this.series =  heroSearched.data.results.filter(hero => hero.series )
+        this.comics = heroSearched.data.results.filter(hero => hero.comics) 
+        //array of comic objects
+        
+        this.events =  heroSearched.data.results.filter(hero => hero.events)
+        this.series =  heroSearched.data.results.filter(hero => hero.series)
 
         console.log(this.id)
         this.buildHeroCard()
     }
 
     fetchInfo (fetchUrl) {
-        // console.log(fetchUrl)
         fetch(fetchUrl)
         .then(response => response.json())
         .then(hero => {
             this.buildHero(hero)
         })
-    
-}
+    }
 
     createCard(heroName) {
-        const whiteSpace = /\s/g //checking for spaces
-
+        const whiteSpace = /\s/g //checking for spaces using regex
         heroName = this.name.replace(whiteSpace,'%20').toLowerCase()
         
        let fetchUrl = `https://gateway.marvel.com/v1/public/characters?nameStartsWith=${heroName}&apikey=cecb0667f3786d500e442a8d4990b71e&hash=8152e0c81bfdf8b93856bf07eca79912&ts=1`
-    //    console.log(fetchUrl)
+
        this.fetchInfo(fetchUrl)
     }
 
@@ -107,9 +110,25 @@ class SuperHero {
         heroCard.append(heroHeader)
 
         const heroImage = document.createElement('img')
-        heroImage.src = this.thumbnail + '.jpg'
+        heroImage.src = this.thumbnail[0] + '.jpg'
         heroImage.classList.add('heroImage')
         heroCard.append(heroImage)
+
+        let heroImageIndex = 0
+        //logic for changing picture of character.
+        heroImage.addEventListener('click', () => {
+            let imagesAvailable = this.thumbnail.length
+
+            if (heroImageIndex < imagesAvailable) {
+                heroImageIndex++
+            }if (heroImageIndex === imagesAvailable) {
+                heroImageIndex === 0
+            }
+            // debugger
+            if (this.thumbnail !== undefined){
+            heroImage.src = this.thumbnail[heroImageIndex] + '.jpg'
+            }
+        })
 
         const heroDesp = document.createElement('details')
         if (this.description === ' '|| this.description === '') {
@@ -122,7 +141,6 @@ class SuperHero {
         //Event Listeners to Attach - turn these into classes possibly.
         const comicButton = document.createElement('button')
         comicButton.addEventListener('click',() => {
-            
             fetch(`https://gateway.marvel.com/v1/public/characters/${this.id}/comics?apikey=cecb0667f3786d500e442a8d4990b71e&hash=8152e0c81bfdf8b93856bf07eca79912&ts=1`)
             .then(response => response.json())
             .then(comics => this.comicClick(comics))
@@ -132,7 +150,6 @@ class SuperHero {
 
         const eventButton = document.createElement('button')
         eventButton.addEventListener('click', () => {
-
             fetch(`https://gateway.marvel.com/v1/public/characters/${this.id}/events?apikey=cecb0667f3786d500e442a8d4990b71e&hash=8152e0c81bfdf8b93856bf07eca79912&ts=1`)
             .then(response => response.json())
             .then(events => this.eventClick(events))
@@ -178,14 +195,11 @@ class SuperHero {
         comicImage.classList.add('comicImage')
         comicHeading.append(comicImage)
         comicImage.src = comic.thumbnail.path + '.jpg'
-
-        // const comicDesp = document.
-     })
+    })
  
     }
     eventClick (event) {
      event.data.results.map(event => {
-        //  console.log(character)
         const eventImage = document.createElement('img')
         eventImage.classList.add('eventImage')
         eventDisplay.append(eventImage)
@@ -195,7 +209,6 @@ class SuperHero {
 
     seriesClick (series) {
      series.data.results.map(series => {
-        //  console.log(character)
         const seriesImage = document.createElement('img')
         seriesImage.classList.add('seriesImage')
         seriesDisplay.append(seriesImage)
@@ -213,7 +226,6 @@ searchButton.addEventListener('click', event => {
 
    heroForm.reset()
 })
-
 
 //Maybe make it we can cycle through each comic indivually and display all the info that way/
 
