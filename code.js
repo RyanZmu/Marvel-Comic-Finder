@@ -215,7 +215,7 @@ searchButton.addEventListener('click', event => {
 })
 
 
-
+//Maybe make it we can cycle through each comic indivually and display all the info that way/
 
 
 

@@ -2,4 +2,4 @@ GET https://gateway.marvel.com/v1/public/characters/1009504/comics?apikey=cecb06
 
 ###
 
-GET https://jservice.kenzie.academy/api/clues/1232
+GET https://jservice.kenzie.academy/api/clues?category=123
