@@ -67,6 +67,11 @@ class SuperHero {
         this.name = heroSearched.data.results.map(hero => hero.name)// array of names
         this.id = heroSearched.data.results.map(hero => hero.id)[0]// use the first id for now.
 
+        if (this.id === undefined) { //if character isn't found as typed
+           userHeroInput.value = 'Sorry, Try A Different Name!  '
+           return setTimeout(() => userHeroInput.value = '',1000)
+        }
+
         this.description = heroSearched.data.results.map(hero => hero.description).join(' ')
        
         this.thumbnail = heroSearched.data.results.map(hero => hero.thumbnail.path)
@@ -96,7 +101,7 @@ class SuperHero {
         
        let fetchUrl = `https://gateway.marvel.com/v1/public/characters?nameStartsWith=${heroName}&apikey=cecb0667f3786d500e442a8d4990b71e&hash=8152e0c81bfdf8b93856bf07eca79912&ts=1`
 
-       this.fetchInfo(fetchUrl)
+        this.fetchInfo(fetchUrl)
     }
 
     buildHeroCard () {
@@ -106,7 +111,7 @@ class SuperHero {
         heroCard.dataset.name = this.name
 
         const heroHeader = document.createElement('h4')
-        heroHeader.innerText = `${this.name}`
+        heroHeader.innerHTML = `${this.name}`
         heroCard.append(heroHeader)
 
         const heroImage = document.createElement('img')
@@ -122,7 +127,7 @@ class SuperHero {
             if (heroImageIndex < imagesAvailable) {
                 heroImageIndex++
             }if (heroImageIndex === imagesAvailable) {
-                heroImageIndex === 0
+                heroImageIndex = 0
             }
             // debugger
             if (this.thumbnail !== undefined){
@@ -223,7 +228,7 @@ searchButton.addEventListener('click', event => {
     event.preventDefault()
 
    new SuperHero(userHeroInput.value).createCard()
-
+ 
    heroForm.reset()
 })
 

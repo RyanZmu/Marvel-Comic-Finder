@@ -9,6 +9,7 @@
 **Current Functions**
 
 <details>
+
 - User can search for any marvel character, they will be displayed a card with the characters picture,bio, buttons for showing comics/storylines and series that character is involved in. 
   
 - When user clicks the characters picture, it will cycle through all available pictures.
@@ -20,6 +21,7 @@
 **To-Do**
 
 <details>
+
 - Display every comic book as a seperate div displaying the name/description if available and the price of the comic.
 
 - Place a link to offical marvel on the character inside the cards.

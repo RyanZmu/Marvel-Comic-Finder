@@ -7,6 +7,12 @@ body {
     background-color: hsl(0, 91%, 40%);
 }
 
+p {
+    text-align: center;
+    color: white;
+    background-color:hsl(0, 90%, 30%);
+}
+
 .heroContainer {
     display: flex;
     justify-content: space-evenly;
@@ -33,9 +39,9 @@ body {
     background-color:hsl(0, 90%, 30%);
 }
 
-.heroCard:hover {
- animation-name: float;
-}
+/* .heroCard:hover {
+ /* height: 10%; */
+/* } */ 
 
 .banner {
     display: flex;
@@ -104,12 +110,12 @@ a {
     color: black;;
 }
 
-/* @keyframes float {
+@keyframes float {
     from {
-        height:10%;
+        margin:0;
       }
     
       to {
-        height:25%;
+        margin:10;
       }
-} */
+}
