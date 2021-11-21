@@ -119,10 +119,24 @@ class SuperHero {
         heroImage.classList.add('heroImage')
         heroCard.append(heroImage)
 
-        let heroImageIndex = 0
+
+        //Button for changing picures
+        const nextPicture = document.createElement('button')
+        nextPicture.classList.add('nextPicture')
+        const prevPicture = document.createElement('button')
+        prevPicture.classList.add('prevPicture')
+
+        heroCard.append(nextPicture,prevPicture)
+
+        nextPicture.textContent = 'Next Picture'
+        prevPicture.textContent = 'Prev Picture'
+        prevPicture.style.visibility = 'hidden' // hide prev button until the user clicks for the next picture
+
         //logic for changing picture of character.
-        heroImage.addEventListener('click', () => {
+        let heroImageIndex = 0
+        nextPicture.addEventListener('click', () => {
             let imagesAvailable = this.thumbnail.length
+            prevPicture.style.visibility = 'visible'
 
             if (heroImageIndex < imagesAvailable) {
                 heroImageIndex++
@@ -134,6 +148,21 @@ class SuperHero {
             heroImage.src = this.thumbnail[heroImageIndex] + '.jpg'
             }
         })
+        
+        prevPicture.addEventListener('click', () => {
+            let imagesAvailable = this.thumbnail.length
+
+            if (heroImageIndex < imagesAvailable && heroImageIndex > 0) {
+                heroImageIndex--
+            }if (heroImageIndex === imagesAvailable) {
+                heroImageIndex = 0
+            }
+            // debugger
+            if (this.thumbnail !== undefined){
+            heroImage.src = this.thumbnail[heroImageIndex] + '.jpg'
+            }
+        })
+       
 
         const heroDesp = document.createElement('details')
         if (this.description === ' '|| this.description === '') {
@@ -183,23 +212,41 @@ class SuperHero {
     comicClick (comics) {
     comics.data.results.map(comic => {
          console.log(comic)
+
          const comicHeading = document.createElement('h5')
+         comicHeading.classList.add('comicCard')
          const comicPriceHeading = document.createElement('h5')
            
         comicHeading.innerText = comic.title
         comicDisplay.prepend(comicHeading)
-        comicPriceHeading.innerText = comic.prices.map(comic => {
-        const type = comic.type
-        const price = comic.price
 
-        return `${type} - ${price}`
+        comicPriceHeading.innerText = comic.prices.map(comic => {
+            const type = comic.type
+            const price = comic.price
+
+            return `${type} - ${price}`
         })
+        
         comicHeading.append(comicPriceHeading)
 
         const comicImage = document.createElement('img')
         comicImage.classList.add('comicImage')
         comicHeading.append(comicImage)
         comicImage.src = comic.thumbnail.path + '.jpg'
+
+       
+       
+        comicLink.addEventListener('click', () => {
+            let comicLink = document.createElement('a')
+            let comicUrl = comic.urls[0].url     
+
+            comicLink.append(comicImage)
+
+           comicLink.href = comicUrl
+           
+
+            console.log(comicLink.getAttribute('href'));
+        })
     })
  
     }
