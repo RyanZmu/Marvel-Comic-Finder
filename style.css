@@ -20,7 +20,7 @@ hr {
 details {
     background-color:hsl(0, 90%, 38%);
     color:white;
-    margin-bottom: 1rem;
+    margin: 0.5rem;
 }
 
 button {
@@ -28,6 +28,8 @@ button {
     color: white;
     border-radius: 10px;
     margin: 3px;
+    width: 5.3rem;
+    word-wrap:break-word;
 }
 
 button:hover {
@@ -46,30 +48,35 @@ a {
 
 .heroContainer {
     display: flex;
+    flex-flow: column;
     justify-content: space-evenly;
     flex-wrap: wrap;
     margin-top: 3rem;   
+    align-items: center;
 }
 
 .heroImage {
-    max-height:20rem;
-    max-width: 10rem;
+    max-height:27rem;
+    min-height: 27rem;
+    max-width: 27rem;
+    min-width: 27rem;
     margin:1rem 0;
 }
 
-.heroImage:hover {
-    height:10rem;
-}
+/* .heroImage:hover {
+    height:23rem;
+} */
 
 .heroCard {
     display: flex;
-    flex-flow: column wrap;
+    flex-flow: row wrap;
     align-items: center;
+    align-content: flex-start;
     flex-basis: 3;
-    width: 18%;
-    height: 10%;
+    width: 80%;
+    height: 30%;
     padding:2%;
-    border: solid 1px black;
+    border: solid 2px black;
     margin: 2rem 0 5rem 0;
     background-color:hsl(0, 90%, 30%);
 }
@@ -100,19 +107,35 @@ a {
     min-width:10rem;
 }
 
+.comicImage {
+    max-height: 12rem;
+}
+
 .comicImage:hover {
-    min-height: 100%;
+    min-width: 9rem;
     z-index: 2;
 }
 
 .comicContainer {
     display: flex;
-    flex-flow: row wrap;
-    justify-content: space-evenly;
+    flex-flow: column wrap;
+    justify-content: center;
     padding: 10px;
     /* background-color:hsl(0, 90%, 30%); */
-    margin: 10rem;
+    /* margin: 0.5rem; */
     z-index: 1;
+}
+
+.showButtonContainer {
+    display: flex;
+    flex-flow: column nowrap;
+}
+
+.pictureButtonContainer {   
+    display: flex;  
+    flex-flow: row wrap;
+    justify-content: left;
+    /* margin-left: 7rem; */
 }
 
 /* keyframes */

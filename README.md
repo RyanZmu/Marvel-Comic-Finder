@@ -24,10 +24,19 @@
 
 - Display every comic book as a seperate div displaying the name/description if available and the price of the comic.
 
-- Place a link to offical marvel on the character inside the cards.
+- Place a link to offical marvel on the character inside the cards.-Done
   
 - Fix edge cases with the names the user is searching for, for instance spider man should work like Spider-Man.
+(Idea: Possibly have an if statement so when a name isn't recognized and includes MAN as the last three indexes(letters), add a hypen at the start of man and try the fetch once more. )
 </details>
+
+<details>
+
+**Bugs**
+
+</details>
+
+- When ciicking comic button or series button, the 
 
 **API**
 
