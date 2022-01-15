@@ -22,17 +22,15 @@
 
 <details>
 
-- Display every comic book as a seperate div displaying the name/description if available and the price of the comic.
+- Display every comic book as a seperate div displaying the name/description if available and the price of the comic. - Done
 
 - Place a link to offical marvel on the character inside the cards.-Done
   
-- Fix edge cases with the names the user is searching for, for instance spider man should work like Spider-Man.
+- When changing the thumbnail for the character, also change the name in the header of the card to be accurate to the thumbnail. Instead of displaying all of the names at once. - Done
 
-(Idea: Possibly have an if statement so when a name isn't recognized and includes MAN as the last three indexes(letters), add a hypen at the start of man and try the fetch once more. )
+(Idea: Have the click event for next and previous, also handle changing the header name. Have the default header name as the first index of the name array and then increment it or decrement it accordingly, while having the cards header display the correct name.) 
 
-- When changing the thumbnail for the character, also change the name in the header of the card to be accurate to the thumbnail. Instead of displaying all of the names at once.
-
-(Idea: Have the click event for next and previous, also handle changing the header name. Have the default header name as the first index of the name array and then increment it or decrement it accordingly, while having the cards header display the correct name.)
+- Make the webpage overall more attractive now that my Minimum Viable Product has been reached.
 
 </details>
 
@@ -41,7 +39,11 @@
 <details>
 - When ciicking comic button or series button, all comics end up in the first card's display. -Fixed
 
-- When looking up comics for a character that has a name with more than two words, a DOM error is being thrown. -Priority
+- When looking up comics for a character that has a name with more than two words, a DOM error is being thrown. - Fixed
+
+- Fix edge cases with the names the user is searching for, for instance spider man should work like Spider-Man. - Priority
+
+(Idea: Possibly have an if statement so when a name isn't recognized and includes MAN as the last three indexes(letters), add a hypen at the start of man and try the fetch once more. )
 
 </details>
 
