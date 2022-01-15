@@ -270,7 +270,6 @@ class SuperHero {
     
         comicHeading.innerText = comic.title
         comicDisplay.prepend(comicHeading) //puts comics into the comic container
-        heroCard.append(comicDisplay)
 
         comicPriceHeading.innerText = comic.prices.map(comic => {
             const type = comic.type
@@ -291,6 +290,8 @@ class SuperHero {
         comicImage.classList.add('comicImage')
         comicLink.append(comicImage)// appending image to the link allows for the entire image to be our link.
         comicImage.src = comic.thumbnail.path + '.jpg' 
+
+        heroCard.append(comicDisplay)
     })
  
     }
@@ -304,18 +305,39 @@ class SuperHero {
         const eventImage = document.createElement('img')
         eventImage.classList.add('eventImage')
         eventImage.src = event.thumbnail.path + '.jpg'
-        eventDisplay.append(eventImage)
 
+        const eventHeading = document.createElement('h5')
+        if (event.description === null) {
+            eventHeading.innerText = 'No Description Given'
+        }else{
+        eventHeading.innerText = event.description
+        }
+        
+        eventDisplay.append(eventHeading,eventImage)
         heroCard.append(eventDisplay)
         })
     }
 
     seriesClick (series) {
      series.data.results.map(series => {
+        const heroCard = document.querySelector('article')
+
+        const seriesDisplay = document.createElement('aside')
+        seriesDisplay.classList.add('seriesDisplay')
+
+        const seriesHeading = document.createElement('h5')
+        if(series.description === null) {
+            seriesHeading.innerText = 'No Description Given'
+        }else{
+        seriesHeading.innerText = series.description
+        }
+
         const seriesImage = document.createElement('img')
         seriesImage.classList.add('seriesImage')
-        seriesDisplay.append(seriesImage)
         seriesImage.src = series.thumbnail.path + '.jpg'
+
+        seriesDisplay.append(seriesHeading,seriesImage)
+        heroCard.append(seriesDisplay)
         })
     }
 }
