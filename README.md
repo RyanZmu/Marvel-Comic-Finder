@@ -32,6 +32,12 @@
 
 - Make the webpage overall more attractive now that my Minimum Viable Product has been reached.
 
+- Add a way for the user to hide the comic/event or series dislays when pressing the Show button again, also if they press Show Events after Show Comics, lets remove the comics and replace with events. -Priority
+
+(Idea #1: Have ONE display instead of indiviual displays and just have my comics/event or series fill that display based on which button was pressed. Clear out the display if there is already items there and replace with the new content.)
+
+(Idead #2: Once Show Comics button is pressed, change text to Hide Comics and then have the website hide that display. This way the user can choose to have all three displayed if needed. Easier to implement since I can keep the displays as is.) 
+
 </details>
 
 **Bugs**
