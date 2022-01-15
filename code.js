@@ -259,9 +259,8 @@ class SuperHero {
 
         //  const comicDisplay = document.querySelector('aside')
          const comicDisplay = document.createElement('aside')
-         comicDisplay.setAttribute('id','comicDisplay')
+         comicDisplay.classList.add('comicDisplay')
      
-         //Using data set we can have the comics display in the correct cards. 
          const heroCard = document.querySelector(`article`)
 
         heroCard.append(comicDisplay)
@@ -297,10 +296,17 @@ class SuperHero {
     }
     eventClick (event) {
      event.data.results.map(event => {
+        const heroCard = document.querySelector('article')
+
+        const eventDisplay = document.createElement('aside')
+        eventDisplay.classList.add('eventDisplay')
+
         const eventImage = document.createElement('img')
         eventImage.classList.add('eventImage')
-        eventDisplay.append(eventImage)
         eventImage.src = event.thumbnail.path + '.jpg'
+        eventDisplay.append(eventImage)
+
+        heroCard.append(eventDisplay)
         })
     }
 
