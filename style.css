@@ -49,6 +49,7 @@ a {
 .heroContainer {
     display: flex;
     flex-flow: column;
+    flex-grow: 4;
     justify-content: space-evenly;
     flex-wrap: wrap;
     margin-top: 3rem;   
@@ -56,10 +57,8 @@ a {
 }
 
 .heroImage {
-    max-height:27rem;
-    min-height: 27rem;
     max-width: 27rem;
-    min-width: 27rem;
+    min-height: 30rem;
     margin:1rem 0;
 }
 
@@ -69,11 +68,13 @@ a {
 
 .heroCard {
     display: flex;
-    flex-flow: row wrap;
+    flex-flow: column nowrap;
+    /* justify-content: center; */
     align-items: center;
-    align-content: flex-start;
-    flex-basis: 3;
-    width: 80%;
+    /* align-content: flex-start; */
+    flex-basis: 3; 
+    min-width: 60%;
+    max-width: 60%;
     height: 30%;
     padding:2%;
     border: solid 2px black;
@@ -108,22 +109,26 @@ a {
 }
 
 .comicImage {
-    max-height: 12rem;
+    max-height: 30rem;
+    max-width: 20rem;
 }
 
 .comicImage:hover {
-    min-width: 9rem;
+    min-width: 10rem;
+    max-height: 40rem;
     z-index: 2;
 }
 
-.comicContainer {
+#comicDisplay {
     display: flex;
     flex-flow: column wrap;
-    justify-content: center;
+    align-items: center;
     padding: 10px;
-    /* background-color:hsl(0, 90%, 30%); */
-    /* margin: 0.5rem; */
-    z-index: 1;
+    background-color:hsl(0, 90%, 30%); 
+    margin: 0.5rem; 
+    max-width: 50%;
+    min-width: 50%;
+    /* z-index: 1; */
 }
 
 .showButtonContainer {

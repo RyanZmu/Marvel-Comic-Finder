@@ -23,7 +23,7 @@ Randomly display five cards and have the search field above. When user searches,
 
 //Structure character.data.results(array of objects)
 
-// HTML Structure:
+// HTML Structure of card:
 
 /* <main>
 <!--Send superHeroCard here-->
@@ -114,14 +114,14 @@ class SuperHero {
         //Elements to display
         const heroCard = document.createElement('article')
         heroCard.classList.add('heroCard')
-        heroCard.dataset.name = this.name
+        heroCard.dataset.name = this.name[0]
 
         // const comicDisplay = document.createElement('aside')
         // comicDisplay.classList.add('comicContainer')
         // heroCard.append(comicDisplay)
 
         const heroHeader = document.createElement('h4')
-        heroHeader.innerHTML = `${this.name}`
+        heroHeader.innerHTML = `${this.name[0]}`
         heroCard.prepend(heroHeader)
 
         const heroImage = document.createElement('img')
@@ -140,7 +140,7 @@ class SuperHero {
         const prevPicture = document.createElement('button')
         prevPicture.classList.add('prevPicture')
 
-        pictureButtonContainer.append(nextPicture,prevPicture)
+        pictureButtonContainer.append(prevPicture,nextPicture)
         heroCard.append(pictureButtonContainer)
 
         nextPicture.textContent = 'Next Picture'
@@ -149,19 +149,26 @@ class SuperHero {
 
         //logic for changing picture of character.
         let heroImageIndex = 0
+        //index so names change with our thumbnails
+        let heroNameIndex = 0
 
         nextPicture.addEventListener('click', () => {
             let imagesAvailable = this.thumbnail.length
             
             if (heroImageIndex < imagesAvailable) {
-                heroImageIndex++
+                heroImageIndex ++
+                heroNameIndex ++
+                heroHeader.innerHTML = `${this.name[heroNameIndex]}`
                 prevPicture.style.visibility = 'visible'
+
             }if (heroImageIndex === imagesAvailable) {
                 heroImageIndex = 0
+                heroNameIndex = 0
+                heroHeader.innerHTML = `${this.name[heroNameIndex]}`
             }  
             
             //this if statement will make the prev button become hidden once we hit the end of our array of thumbnails.
-            //Placed and the end so it gets checked last.
+            //Placed at the end so it gets checked last.
             if (heroImageIndex === 0) {
                 prevPicture.style.visibility = 'hidden'
             }
@@ -187,10 +194,13 @@ class SuperHero {
 
             if (heroImageIndex < imagesAvailable && heroImageIndex > 0) {
                 heroImageIndex--
+                heroNameIndex--
+                heroHeader.innerHTML = `${this.name[heroNameIndex]}`
             }if (heroImageIndex === imagesAvailable) {
                 heroImageIndex = 0
+                heroNameIndex = 0
             }
-
+            
             // debugger
             if (this.thumbnail !== undefined){
             heroImage.src = this.thumbnail[heroImageIndex] + '.jpg'
@@ -198,7 +208,7 @@ class SuperHero {
             
         })  
 
-        //container so we can manipulate certain buttons and the descriptions location
+        //container so we can manipulate show buttons and the descriptions location
         const showButtonContainer = document.createElement('div')
         showButtonContainer.classList.add('showButtonContainer')
         heroCard.append(showButtonContainer)
@@ -238,30 +248,29 @@ class SuperHero {
         })
         seriesButton.innerText = 'Show \b Series'
         showButtonContainer.append(seriesButton)
-        
-        this.displayHeroCard(heroCard)
+
+        mainDisplay.prepend(heroCard) //displays hero card
     }
 
-    displayHeroCard (heroCard) {
-        heroCard.classList.add('card')
-        mainDisplay.prepend(heroCard)
-    }
-
-    // make a comicCard class
+    // make a comicCard class possibly - Recode this function to work in each card INDIViDUALlY
     comicClick (comics) {
     comics.data.results.map(comic => {
          console.log(comic)
 
-         const comicDisplay = document.querySelector('aside')
-         const heroCard = document.querySelector('.card')
+        //  const comicDisplay = document.querySelector('aside')
+         const comicDisplay = document.createElement('aside')
+         comicDisplay.setAttribute('id','comicDisplay')
+     
+         //Using data set we can have the comics display in the correct cards. 
+         const heroCard = document.querySelector(`article`)
 
         heroCard.append(comicDisplay)
          const comicHeading = document.createElement('h5')
-         comicHeading.classList.add('comicCard')
+        //  comicHeading.classList.add('comicCard')
          const comicPriceHeading = document.createElement('h5')
-           
+    
         comicHeading.innerText = comic.title
-        comicDisplay.append(comicHeading) //puts comics into the comic container
+        comicDisplay.prepend(comicHeading) //puts comics into the comic container
         heroCard.append(comicDisplay)
 
         comicPriceHeading.innerText = comic.prices.map(comic => {
@@ -274,7 +283,7 @@ class SuperHero {
         comicHeading.append(comicPriceHeading)
 
         let comicLink = document.createElement('a') //link to purchasing the comic
-        comicHeading.append(comicLink)
+        comicDisplay.append(comicLink)
         let comicUrl = comic.urls[0].url     
         comicLink.href = comicUrl
         comicLink.target = '_blank'
@@ -310,8 +319,13 @@ class SuperHero {
 searchButton.addEventListener('click', event => {
     event.preventDefault()
 
+    if (document.querySelector('article') === null){
    new SuperHero(userHeroInput.value).createCard()
- 
+    }else {
+        document.querySelector('article').remove()
+        new SuperHero(userHeroInput.value).createCard()
+    }
+
    heroForm.reset()
 })
 
@@ -326,21 +340,21 @@ searchButton.addEventListener('click', event => {
 
 
 //Tests
-let heroTester = new SuperHero('Black Widow')
-heroTester.createCard()
+// let heroTester = new SuperHero('Black Widow')
+// heroTester.createCard()
 
-let heroTesterTwo = new SuperHero('Iron Man')
-heroTesterTwo.createCard()
+// let heroTesterTwo = new SuperHero('Iron Man')
+// heroTesterTwo.createCard()
 
-let heroTesterThree = new SuperHero('Thor')
-heroTesterThree.createCard()
+// let heroTesterThree = new SuperHero('Thor')
+// heroTesterThree.createCard()
 
-let heroTesterFour = new SuperHero('Daredevil')
-heroTesterFour.createCard()
+// let heroTesterFour = new SuperHero('Daredevil')
+// heroTesterFour.createCard()
 
-let heroTesterFive = new SuperHero('Captain America')
-heroTesterFive.createCard()
+// let heroTesterFive = new SuperHero('Captain America')
+// heroTesterFive.createCard()
 
-let heroTesterSix = new SuperHero('Spider-Man')
-heroTesterSix.createCard()
+// let heroTesterSix = new SuperHero('Spider-Man')
+// heroTesterSix.createCard()
 
