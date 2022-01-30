@@ -4,7 +4,7 @@
 }
 
 body {
-    background-color: hsl(0, 91%, 40%);
+    background-color:hsl(0, 90%, 30%); 
 }
 
 p {
@@ -62,9 +62,9 @@ a {
     margin:1rem 0;
 }
 
-/* .heroImage:hover {
-    height:23rem;
-} */
+.heroImage:hover {
+    filter:opacity(85%)
+}
 
 .heroCard {
     display: flex;
@@ -79,7 +79,8 @@ a {
     padding:2%;
     border: solid 2px black;
     margin: 2rem 0 5rem 0;
-    background-color:hsl(0, 90%, 30%);
+    /* background-color: hsla(0, 91%, 40%,0.3); */
+    background-color: hsla(0, 50%, 50%,50%);
 }
 
 .banner {
@@ -104,9 +105,10 @@ a {
 }
 
 .comicImage:hover {
-    min-width: 10rem;
+    /* min-width: 10rem;
     max-height: 40rem;
-    z-index: 2;
+    z-index: 2; */
+    filter:opacity(85%)
 }
 
 .comicDisplay,.eventDisplay,.seriesDisplay {
@@ -114,7 +116,8 @@ a {
     flex-flow: column wrap;
     align-items: center;
     padding: 10px;
-    background-color:hsl(0, 90%, 30%); 
+    background-color: hsl(0, 91%, 40%);
+    /* background-color:hsl(0, 90%, 30%); */
     margin: 0.5rem; 
     max-width: 50%;
     min-width: 50%;

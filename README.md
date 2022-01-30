@@ -38,6 +38,8 @@
 
 (Idead #2: Once Show Comics button is pressed, change text to Hide Comics and then have the website hide that display. This way the user can choose to have all three displayed if needed. Easier to implement since I can keep the displays as is.) 
 
+- Invert the reds so the background is dark and then use the lighter red as a transparent box over top. Sorta like the Animal Crossing Wiki.
+
 </details>
 
 **Bugs**
